@@ -44,6 +44,12 @@ async function getFetch() {
   const spreadEvolves = [...nextEvo];
   console.log("this is spreadEvolves", spreadEvolves);
 
+  while (nextEvo.length > 0) {
+    initialEvo.push(spreadEvolves.map((poke) => poke.species.name));
+
+    nextEvo = nextEvo[0].evolves_to;
+  }
+  console.log("this is initial evo", initialEvo);
   // console.log("this is second evo", thirdEvoPoke);
 
   // const urlForFirstSprites =
