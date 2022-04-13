@@ -30,7 +30,7 @@ body {
   font-size: 20px;
   background-color: white;
   box-shadow: 20px 20px rgba(27, 92, 214, 0.514);
-  width: 50vw;
+  min-width: 50vw;
   border-radius: 20px;
   justify-content: space-around;
   align-items: center;
@@ -79,4 +79,17 @@ input {
   background-color: rgb(175, 174, 174);
   box-shadow: 2px 2px rgb(173, 83, 83);
   height: 5vh;
+}
+.pokeEvos {
+  display: flex;
+  width: 50%;
+  flex-wrap: wrap;
+}
+.pokeEvos > img {
+  display: flex;
+  flex-direction: column;
+  background: rgba(27, 92, 214, 0.514);
+}
+.pokeEvos > p {
+  height: 10px;
 }
