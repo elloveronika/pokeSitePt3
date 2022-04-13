@@ -6,8 +6,24 @@ document.querySelector("button").addEventListener("click", getPokeNames);
 //function that will handle the og fetch
 
 async function getPokeSprites(pokeName) {
-  console.log("this is array of pokeNames inside pokeSprites", pokeName);
-  // let url = "https://pokeapi.co/api/v2/pokemon/" + ;
+  // console.log("this is array of pokeNames inside pokeSprites", pokeName);
+
+  for (let i = 0; i < pokeName.length; i++) {
+    // console.log(pokeName[i]);
+
+    let resPoke = await fetch(
+      "https://pokeapi.co/api/v2/pokemon/" + pokeName[i]
+    );
+    let dataPoke = await resPoke.json();
+    // let div = document.createElement("div");
+
+    let img = document.createElement("img");
+
+    document.querySelector(".pokeEvos").appendChild(img);
+
+    img.src = dataPoke.sprites.front_default;
+  }
+
   // let res = await fetch(url);
   // let data = await res.json();
   // console.log("this is data inside pokesprites", data);
@@ -38,7 +54,7 @@ async function getPokeNames() {
 
   let evoBegin = dataPokeEvo.chain;
 
-  let names = [evoBegin.species.name];
+  let arrayOfNames = [evoBegin.species.name];
 
   let nextEvo = dataPokeEvo.chain.evolves_to;
 
@@ -46,9 +62,9 @@ async function getPokeNames() {
   // console.log("this is spreadEvolves", spreadEvolves);
 
   while (nextEvo.length > 0) {
-    names.push(...nextEvo.map((poke) => poke.species.name));
+    arrayOfNames.push(...nextEvo.map((poke) => poke.species.name));
 
     nextEvo = nextEvo[0].evolves_to;
   }
-  console.log("this is names", names);
+  getPokeSprites(arrayOfNames);
 }
